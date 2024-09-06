@@ -72,9 +72,11 @@ public class SaveRunner implements CommandLineRunner {
             Edificio googleFromDb=edificioService.findById(UUID.fromString("1d9115d8-4553-4e60-bcc4-c736b91e5377"));
 
             Postazione unicreditPrivata= new Postazione("Sala privata per teamWork", TipoPostazione.PRIVATO,10,unicreditFromDb);
+            Postazione unicreditOpenSpace= new Postazione("Sala Open-Space per lavorare in gruppo con vista eccellente",TipoPostazione.OPEN_SPACE,22,unicreditFromDb);
             Postazione amazonOpenSpace=new Postazione("Sala Open-Space per lavorare in gruppo con vista eccellente",TipoPostazione.OPEN_SPACE,12,amazonFromDb);
             Postazione googleRiunioni=new Postazione("Sala riunioni con tutti i comfort",TipoPostazione.SALA_RIUNIONI,20,googleFromDb);
 
+            postazioneService.savePostazione(unicreditOpenSpace);
             postazioneService.savePostazione(unicreditPrivata);
             postazioneService.savePostazione(amazonOpenSpace);
             postazioneService.savePostazione(googleRiunioni);

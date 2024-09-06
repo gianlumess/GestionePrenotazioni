@@ -16,7 +16,7 @@ public class PostazioneService {
     PostazioneRepository postazioneRepository;
 
     public void savePostazione(Postazione postazione){
-        if(postazioneRepository.existsByDescrizione(postazione.getDescrizione())&&postazioneRepository.existsByEdificio(postazione.getEdificio())) throw new ValidationException("Esiste già una postazione : "+postazione.getDescrizione());
+        if(postazioneRepository.existsByDescrizioneAndEdificio(postazione.getDescrizione(),postazione.getEdificio())) throw new ValidationException("Esiste già una postazione : "+postazione.getDescrizione());
         postazioneRepository.save(postazione);
 
         System.out.println("La postazione nell'edificio: "+postazione.getEdificio().getNome()+" , di tipo: "+postazione.getTipoPostazione()+  " è stata salvata correttamente!");
