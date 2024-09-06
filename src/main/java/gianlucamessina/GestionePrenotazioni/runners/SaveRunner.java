@@ -4,18 +4,21 @@ import com.github.javafaker.Faker;
 import gianlucamessina.GestionePrenotazioni.GestionePrenotazioniApplication;
 import gianlucamessina.GestionePrenotazioni.entities.Edificio;
 import gianlucamessina.GestionePrenotazioni.entities.Postazione;
+import gianlucamessina.GestionePrenotazioni.entities.Prenotazione;
 import gianlucamessina.GestionePrenotazioni.entities.Utente;
 import gianlucamessina.GestionePrenotazioni.enums.TipoPostazione;
 import gianlucamessina.GestionePrenotazioni.exceptions.NotFoundException;
 import gianlucamessina.GestionePrenotazioni.exceptions.ValidationException;
 import gianlucamessina.GestionePrenotazioni.services.EdificioService;
 import gianlucamessina.GestionePrenotazioni.services.PostazioneService;
+import gianlucamessina.GestionePrenotazioni.services.PrenotazioneService;
 import gianlucamessina.GestionePrenotazioni.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -28,6 +31,8 @@ public class SaveRunner implements CommandLineRunner {
     EdificioService edificioService;
     @Autowired
     PostazioneService postazioneService;
+    @Autowired
+    PrenotazioneService prenotazioneService;
 
 
     @Override
@@ -61,15 +66,15 @@ public class SaveRunner implements CommandLineRunner {
         Utente utente2=new Utente(faker.name().username(),faker.name().firstName(),faker.name().lastName(),faker.internet().emailAddress());
         try {
         //utenteService.saveUtente(utente1);
-        //utenteService.saveUtente(utente2);
+        utenteService.saveUtente(utente2);
         }catch (ValidationException e){
             System.out.println(e.getMessage());
         }
         //*********************************** SAVE DI POSTAZIONI *************************************
         try {
-            Edificio unicreditFromDb=edificioService.findById(UUID.fromString("8501b713-b0b7-4e08-86f8-7d46e5c3bcc8"));
-            Edificio amazonFromDb=edificioService.findById(UUID.fromString("f0b950a4-052a-48ea-955d-121765097bb6"));
-            Edificio googleFromDb=edificioService.findById(UUID.fromString("1d9115d8-4553-4e60-bcc4-c736b91e5377"));
+            Edificio unicreditFromDb=edificioService.findById(UUID.fromString("a5c352e7-8cba-47fa-923c-645d62ec1dbe"));
+            Edificio amazonFromDb=edificioService.findById(UUID.fromString("58466be8-bfab-49a6-b509-52e913c4c68d"));
+            Edificio googleFromDb=edificioService.findById(UUID.fromString("87409b98-fdd5-45b5-a96b-da32226dca65"));
 
             Postazione unicreditPrivata= new Postazione("Sala privata per teamWork", TipoPostazione.PRIVATO,10,unicreditFromDb);
             Postazione unicreditOpenSpace= new Postazione("Sala Open-Space per lavorare in gruppo con vista eccellente",TipoPostazione.OPEN_SPACE,22,unicreditFromDb);
@@ -84,8 +89,10 @@ public class SaveRunner implements CommandLineRunner {
             System.out.println(e.getMessage());
         }
 
-
-
-
+        //*********************************** SAVE DI PRENOTAZIONI *************************************
+        Utente gianluFromDb=utenteService.findById("gianlumess");
+        Postazione unicreditPrivataFromDb=postazioneService.findById(UUID.fromString("199afcb6-dae6-4443-940c-a804be39f29f"));
+        Prenotazione prenotazione1=new Prenotazione(LocalDate.now(),gianluFromDb,unicreditPrivataFromDb);
+        prenotazioneService.savePrenotazione(prenotazione1);
     }
 }

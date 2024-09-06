@@ -28,6 +28,8 @@ public class Postazione {
     @ManyToOne
     @JoinColumn(name = "edificio_id")
     private Edificio edificio;
+    @Column(name = "stato_postazione")
+    private String statoPostazione;
 
 
     public Postazione(String descrizione, TipoPostazione tipoPostazione, int numMaxOccupanti, Edificio edificio) {
@@ -35,6 +37,7 @@ public class Postazione {
         this.tipoPostazione = tipoPostazione;
         this.numMaxOccupanti = numMaxOccupanti;
         this.edificio = edificio;
+        this.statoPostazione="LIBERA";
     }
 
     @Override
