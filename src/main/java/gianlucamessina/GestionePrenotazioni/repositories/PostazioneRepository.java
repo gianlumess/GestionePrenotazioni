@@ -13,5 +13,5 @@ public interface PostazioneRepository extends JpaRepository<Postazione, UUID> {
 
         boolean existsByDescrizioneAndEdificio(String descrizione,Edificio edificio);
 
-        List<Postazione> findByTipoPostazioneAndEdificio_Citta(TipoPostazione tipoPostazione,String citta);
+        List<Postazione> findByTipoPostazioneAndEdificio_CittaIgnoreCase(TipoPostazione tipoPostazione,String citta);
 }

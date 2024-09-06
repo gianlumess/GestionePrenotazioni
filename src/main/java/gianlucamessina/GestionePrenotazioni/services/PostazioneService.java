@@ -29,6 +29,6 @@ public class PostazioneService {
     }
 
     public List<Postazione> findByTipoAndCitta(TipoPostazione tipoPostazione,String citta){
-        return postazioneRepository.findByTipoPostazioneAndEdificio_Citta(tipoPostazione,citta);
+        return postazioneRepository.findByTipoPostazioneAndEdificio_CittaIgnoreCase(tipoPostazione,citta);
     }
 }

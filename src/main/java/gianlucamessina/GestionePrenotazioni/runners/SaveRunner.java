@@ -102,6 +102,6 @@ public class SaveRunner implements CommandLineRunner {
         System.out.println("");
         System.out.println("************************* RICERCA POSTAZIONI PER CITTA' : 'MILANO' E OPEN-SPACE *************************");
         System.out.println("");
-        postazioneService.findByTipoAndCitta(TipoPostazione.OPEN_SPACE,"Milano").forEach(System.out::println);
+        postazioneService.findByTipoAndCitta(TipoPostazione.OPEN_SPACE,"milano").forEach(System.out::println);
     }
 }
