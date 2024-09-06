@@ -21,6 +21,7 @@ public class Utente {
     private String userName;
     private String nome;
     private String cogonome;
+    private String email;
 
     @Override
     public String toString() {
@@ -28,6 +29,7 @@ public class Utente {
                 "userName='" + userName + '\'' +
                 ", nome='" + nome + '\'' +
                 ", cogonome='" + cogonome + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
