@@ -92,7 +92,16 @@ public class SaveRunner implements CommandLineRunner {
         //*********************************** SAVE DI PRENOTAZIONI *************************************
         Utente gianluFromDb=utenteService.findById("gianlumess");
         Postazione unicreditPrivataFromDb=postazioneService.findById(UUID.fromString("199afcb6-dae6-4443-940c-a804be39f29f"));
+        try {
         Prenotazione prenotazione1=new Prenotazione(LocalDate.now(),gianluFromDb,unicreditPrivataFromDb);
         prenotazioneService.savePrenotazione(prenotazione1);
+
+        }catch (ValidationException e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("");
+        System.out.println("************************* RICERCA POSTAZIONI PER CITTA' : 'MILANO' E OPEN-SPACE *************************");
+        System.out.println("");
+        postazioneService.findByTipoAndCitta(TipoPostazione.OPEN_SPACE,"Milano").forEach(System.out::println);
     }
 }

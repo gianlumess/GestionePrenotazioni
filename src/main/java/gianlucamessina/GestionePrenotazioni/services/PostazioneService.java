@@ -1,12 +1,14 @@
 package gianlucamessina.GestionePrenotazioni.services;
 
 import gianlucamessina.GestionePrenotazioni.entities.Postazione;
+import gianlucamessina.GestionePrenotazioni.enums.TipoPostazione;
 import gianlucamessina.GestionePrenotazioni.exceptions.NotFoundException;
 import gianlucamessina.GestionePrenotazioni.exceptions.ValidationException;
 import gianlucamessina.GestionePrenotazioni.repositories.PostazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -24,5 +26,9 @@ public class PostazioneService {
 
     public Postazione findById(UUID postazioneId){
         return postazioneRepository.findById(postazioneId).orElseThrow(() -> new NotFoundException(postazioneId));
+    }
+
+    public List<Postazione> findByTipoAndCitta(TipoPostazione tipoPostazione,String citta){
+        return postazioneRepository.findByTipoPostazioneAndEdificio_Citta(tipoPostazione,citta);
     }
 }
