@@ -19,6 +19,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -72,9 +73,9 @@ public class SaveRunner implements CommandLineRunner {
         }
         //*********************************** SAVE DI POSTAZIONI *************************************
         try {
-            Edificio unicreditFromDb=edificioService.findById(UUID.fromString("a5c352e7-8cba-47fa-923c-645d62ec1dbe"));
-            Edificio amazonFromDb=edificioService.findById(UUID.fromString("58466be8-bfab-49a6-b509-52e913c4c68d"));
-            Edificio googleFromDb=edificioService.findById(UUID.fromString("87409b98-fdd5-45b5-a96b-da32226dca65"));
+            Edificio unicreditFromDb=edificioService.findById(UUID.fromString("afca3cb3-bbe9-4328-9a90-de80379b3d33"));
+            Edificio amazonFromDb=edificioService.findById(UUID.fromString("4439fce6-619f-42c8-9591-b3ce9caccdea"));
+            Edificio googleFromDb=edificioService.findById(UUID.fromString("612c2b60-57a6-47ea-ba6e-cc476bf82f44"));
 
             Postazione unicreditPrivata= new Postazione("Sala privata per teamWork", TipoPostazione.PRIVATO,10,unicreditFromDb);
             Postazione unicreditOpenSpace= new Postazione("Sala Open-Space per lavorare in gruppo con vista eccellente",TipoPostazione.OPEN_SPACE,22,unicreditFromDb);
@@ -91,7 +92,7 @@ public class SaveRunner implements CommandLineRunner {
 
         //*********************************** SAVE DI PRENOTAZIONI *************************************
         Utente gianluFromDb=utenteService.findById("gianlumess");
-        Postazione unicreditPrivataFromDb=postazioneService.findById(UUID.fromString("199afcb6-dae6-4443-940c-a804be39f29f"));
+        Postazione unicreditPrivataFromDb=postazioneService.findById(UUID.fromString("aff592a2-8452-4286-afe7-b208f848c00e"));
         try {
         Prenotazione prenotazione1=new Prenotazione(LocalDate.now(),gianluFromDb,unicreditPrivataFromDb);
         prenotazioneService.savePrenotazione(prenotazione1);
@@ -103,5 +104,9 @@ public class SaveRunner implements CommandLineRunner {
         System.out.println("************************* RICERCA POSTAZIONI PER CITTA' : 'MILANO' E OPEN-SPACE *************************");
         System.out.println("");
         postazioneService.findByTipoAndCitta(TipoPostazione.OPEN_SPACE,"milano").forEach(System.out::println);
+        System.out.println("");
+        System.out.println("STAMPA PRENOTAZIONI DI GIANLUMESS");
+
+        gianluFromDb.getPrenotazioni().forEach(System.out::println);
     }
 }

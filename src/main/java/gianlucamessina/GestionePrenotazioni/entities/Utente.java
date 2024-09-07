@@ -20,8 +20,8 @@ public class Utente {
     private String nome;
     private String cogonome;
     private String email;
-    @OneToMany(mappedBy = "utente")
-    private List<Prenotazione> prenotazioni;
+    @OneToMany(mappedBy = "utente",fetch = FetchType.EAGER) //utilizzato fetchType.EAGER per caricare la collezione associata immediatamente insieme all'entità padre.
+    private List<Prenotazione> prenotazioni;                //implementato perchè non ricevevo i dati della lista (null)
 
     public Utente(String userName, String nome, String cogonome, String email) {
         this.userName = userName;
@@ -37,6 +37,7 @@ public class Utente {
                 ", nome='" + nome + '\'' +
                 ", cogonome='" + cogonome + '\'' +
                 ", email='" + email + '\'' +
+                ", prenotazioni=" + prenotazioni +
                 '}';
     }
 }

@@ -38,7 +38,7 @@ public class Prenotazione {
         return "Prenotazione{" +
                 "id=" + id +
                 ", dataPrenotazione=" + dataPrenotazione +
-                ", utente=" + utente +
+
                 ", postazione=" + postazione +
                 '}';
     }

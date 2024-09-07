@@ -18,13 +18,21 @@ public class PrenotazioneService {
     @Autowired
     PostazioneRepository postazioneRepository;
 
+
     public void savePrenotazione(Prenotazione prenotazione){
+        //se si prova ad effettuare una prenotazione per una postazione che risulta "OCCUPATA" lancerà un errore
         if(Objects.equals(prenotazione.getPostazione().getStatoPostazione(), "OCCUPATA")) throw new ValidationException("La postazione che hai provato a prenotare risulta: "+prenotazione.getPostazione().getStatoPostazione());
+        //mi creo il riferimento alla postazione che l'utente vuole prenotare
         Postazione postazione = prenotazione.getPostazione();
+        //cambio lo stato della postazione
         postazione.setStatoPostazione("OCCUPATA");
+        //salvo la prenotazione
         prenotazioneRepository.save(prenotazione);
+        //aggiorno lo stato della postazione nel Database
         postazioneRepository.save(postazione);
 
         System.out.println("La prenotazione della postazione con ID: "+prenotazione.getId()+ " fatta dall'utente: "+prenotazione.getUtente().getUserName()+" , è stata salvata correttamente!");
     }
+
+
 }

@@ -1,14 +1,11 @@
 package gianlucamessina.GestionePrenotazioni.services;
 
-import gianlucamessina.GestionePrenotazioni.entities.Postazione;
 import gianlucamessina.GestionePrenotazioni.entities.Utente;
 import gianlucamessina.GestionePrenotazioni.exceptions.NotFoundException;
 import gianlucamessina.GestionePrenotazioni.exceptions.ValidationException;
 import gianlucamessina.GestionePrenotazioni.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class UtenteService {
@@ -26,4 +23,6 @@ public class UtenteService {
     public Utente findById(String utenteId){
         return utenteRepository.findById(utenteId).orElseThrow(() -> new NotFoundException(utenteId));
     }
+
+
 }
