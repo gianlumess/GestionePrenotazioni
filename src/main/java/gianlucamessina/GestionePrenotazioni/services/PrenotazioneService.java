@@ -8,6 +8,7 @@ import gianlucamessina.GestionePrenotazioni.repositories.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -17,6 +18,8 @@ public class PrenotazioneService {
     PrenotazioneRepository prenotazioneRepository;
     @Autowired
     PostazioneRepository postazioneRepository;
+    @Autowired
+    UtenteService utenteService;
 
 
     public void savePrenotazione(Prenotazione prenotazione){
@@ -34,5 +37,8 @@ public class PrenotazioneService {
         System.out.println("La prenotazione della postazione con ID: "+prenotazione.getId()+ " fatta dall'utente: "+prenotazione.getUtente().getUserName()+" , è stata salvata correttamente!");
     }
 
-
+    public List<Prenotazione>getPrenotazioneListByUserId(String userId){
+        //passo alla query findByUtente la query findById che mi restituisce l'utente, che passo come parametro a findByUtente
+        return prenotazioneRepository.findByUtente(utenteService.findById(userId));
+    }
 }

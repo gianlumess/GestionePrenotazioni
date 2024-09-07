@@ -107,6 +107,10 @@ public class SaveRunner implements CommandLineRunner {
         System.out.println("");
         System.out.println("STAMPA PRENOTAZIONI DI GIANLUMESS");
 
-        gianluFromDb.getPrenotazioni().forEach(System.out::println);
+        try {
+        prenotazioneService.getPrenotazioneListByUserId("gianlumess").forEach(System.out::println);
+        }catch (NotFoundException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
