@@ -1,6 +1,5 @@
 package gianlucamessina.GestionePrenotazioni.services;
 
-import gianlucamessina.GestionePrenotazioni.entities.Edificio;
 import gianlucamessina.GestionePrenotazioni.entities.Postazione;
 import gianlucamessina.GestionePrenotazioni.entities.Prenotazione;
 import gianlucamessina.GestionePrenotazioni.exceptions.ValidationException;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class PrenotazioneService {
