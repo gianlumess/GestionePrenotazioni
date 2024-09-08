@@ -38,7 +38,7 @@ public class PrenotazioneService {
     }
 
     public List<Prenotazione>getPrenotazioneListByUserId(String userId){
-        //passo alla query findByUtente la query findById che mi restituisce l'utente, che passo come parametro a findByUtente
+        //passo alla query findByUtente la query findById dell'UtenteService che mi restituisce l'utente, che passo come parametro a findByUtente
         return prenotazioneRepository.findByUtente(utenteService.findById(userId));
     }
 }

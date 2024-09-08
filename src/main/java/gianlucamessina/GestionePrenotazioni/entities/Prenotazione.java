@@ -33,6 +33,14 @@ public class Prenotazione {
         this.postazione = postazione;
     }
 
+    public void printPrenotazione(Prenotazione prenotazione){
+        System.out.println("PRENOTAZIONE : "+prenotazione.getId());
+        System.out.println("--UTENTE: "+prenotazione.getUtente().getUserName());
+        System.out.println("--POSTAZIONE :"+prenotazione.getPostazione().getId()+", TIPO: "+postazione.getTipoPostazione());
+        System.out.println("--EDIFICIO: "+ postazione.getEdificio().getNome());
+        System.out.println("--CITTA': "+postazione.getEdificio().getCitta());
+    }
+
     @Override
     public String toString() {
         return "Prenotazione{" +
